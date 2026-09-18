@@ -18,7 +18,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -165,12 +166,189 @@ label span {
   font-size: 13px;
 }
 
-input {
+input,
+select {
   width: 100%;
   min-height: 42px;
   border-radius: 7px;
   border: 1px solid var(--border);
   padding: 0 12px;
+  background: #ffffff;
+}
+
+select {
+  width: auto;
+  min-width: 220px;
+}
+
+input:disabled,
+select:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: #64748b;
+}
+
+.ghost:hover {
+  color: var(--primary);
+}
+
+/* ---- 标签与状态 ---- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tag-thread { background: #e0f2fe; color: #075985; }
+.gas-air { background: #f1f5f9; color: #475569; }
+.gas-nitrox { background: #ccfbf1; color: #0f766e; }
+.gas-trimix { background: #fef3c7; color: #b45309; }
+.clean-ok { background: #dcfce7; color: #15803d; }
+.clean-no { background: #e2e8f0; color: #64748b; }
+.clean-wait { background: #fee2e2; color: #b91c1c; }
+.tag-expired { background: #b91c1c; color: #ffffff; }
+.tag-soon { background: #ffedd5; color: #c2410c; }
+.tag-valid { background: #f0f9ff; color: #0369a1; }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pill.idle { background: #dcfce7; color: #15803d; }
+.pill.busy { background: #dbeafe; color: #1d4ed8; }
+.pill.dirty { background: #fee2e2; color: #b91c1c; }
+
+/* ---- 队列与卡片 ---- */
+
+.queue-list,
+.adapter-list,
+.history-list {
+  display: grid;
+  gap: 12px;
+}
+
+.queue-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.queue-row.expired {
+  border-color: #fca5a5;
+  background: #fff7f7;
+}
+
+.queue-row.occupied {
+  border-left: 4px solid var(--secondary);
+}
+
+.adapter-card {
+  display: grid;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.history-item {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fbfdff;
+}
+
+.row-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.row-top h3 {
+  margin: 0;
+}
+
+.row-top .vol {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.row-top .time {
+  margin-left: auto;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.row-meta {
+  margin: 0;
+  color: #526071;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.mix-hint {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.form-hint {
+  margin: 12px 0 0;
+}
+
+.hint {
+  color: #b45309;
+  font-size: 14px;
+  margin: 0;
+}
+
+.danger-text {
+  margin: 0;
+  color: #b91c1c;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.field-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.chips .chip-active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
 }
 
 .records {
@@ -211,8 +389,13 @@ input {
 @media (max-width: 860px) {
   .metrics,
   .workspace,
-  .field-grid {
+  .field-grid,
+  .field-grid.three {
     grid-template-columns: 1fr;
+  }
+
+  select {
+    width: 100%;
   }
 
   .hero {
